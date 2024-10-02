@@ -1,13 +1,19 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const dataRoutes = require("./routes/professional");
+const mongoDB = require("./database/connect");
+const professionalRoutes = require("./routes/professional");
+const contactRoutes = require("./routes/contacts");
 
 app.use(cors());
 app.use(express.json()); // For parsing JSON bodies
 
+// Connect to MongoDB
+mongoDB.connectDb();
+
 // Define route for data
-app.use("/professional", dataRoutes);
+app.use("/professional", professionalRoutes);
+app.use("/contacts", contactRoutes);
 
 // Start server on port 8080
 const PORT = process.env.PORT || 8080;

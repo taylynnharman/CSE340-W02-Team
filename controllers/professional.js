@@ -13,4 +13,6 @@ const getData = (req, res, next) => {
   }
 };
 
-module.exports = { getData };
+const getMongoData = (req, res, next) => {};
+
+module.exports = { getData, getMongoData };

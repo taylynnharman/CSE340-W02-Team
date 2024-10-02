@@ -1,0 +1,5 @@
+GET http://localhost:8080/professional # the request above returns a json object with all professional data for Nathan Birch. No database is connected.
+
+GET http://localhost:8080/contacts  #the request above is connected to a mongoDB
+
+GET http://localhost:8080/contacts/66fce0a430be36e06fd966fb

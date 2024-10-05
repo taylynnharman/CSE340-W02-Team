@@ -6,7 +6,9 @@ const professionalRoutes = require("./routes/professional");
 const contactRoutes = require("./routes/contacts");
 
 app.use(cors());
-app.use(express.json()); // For parsing JSON bodies
+
+// Middleware to parse JSON request body
+app.use(express.json());
 
 // Connect to MongoDB
 mongoDB.connectDb();

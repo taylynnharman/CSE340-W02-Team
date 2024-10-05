@@ -46,5 +46,88 @@ const getContactById = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch contact" }); // Return a 500 error
   }
 };
+/* CREATE CONTACT */
+const createContact = async (req, res) => {
+  const contact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday,
+  };
 
-module.exports = { getContacts, getContactById };
+  try {
+    const db = getDb();
+    const response = await db.collection("contacts").insertOne(contact);
+    if (response.acknowledged) {
+      res.status(201).json({ contactId: response.insertedId });
+    } else {
+      res.status(500).json({ error: "Failed to create the contact." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred: " + error.message });
+  }
+};
+
+/* UPDATE CONTACT */
+const updateContact = async (req, res) => {
+  const contactId = new ObjectId(req.params.id);
+  const updatedContact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday,
+  };
+
+  try {
+    const db = getDb();
+    const response = await db
+      .getDb()
+      .db()
+      .collection("contacts")
+      .updateOne({ _id: contactId }, { $set: updatedContact });
+    if (response.modifiedCount > 0) {
+      res.status(200).json({ message: "Contact updated successfully." });
+    } else {
+      res.status(404).json({ error: "No contact found with that ID." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred: " + error.message });
+  }
+};
+
+/* DELETE CONTACT */
+const deleteContact = async (req, res) => {
+  const contactId = new ObjectId(req.params.id);
+
+  try {
+    const db = getDb();
+    const response = await db
+      .collection("contacts")
+      .deleteOne({ _id: contactId });
+    if (response.deletedCount > 0) {
+      res.status(200).json({ message: "Contact deleted successfully." });
+    } else {
+      res.status(404).json({ error: "No contact found with that ID." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred: " + error.message });
+  }
+};
+
+module.exports = {
+  getContacts,
+  getContactById,
+  createContact,
+  updateContact,
+  deleteContact,
+};
+
+/*
+You should test each of these routes thoroughly using your rest client of choice (this REST Client works well) .
+Ensure you include a .rest file for testing (similar to what you see in the example video - shown in sample solution below).
+Push to GitHub.
+Publish to Render.
+Create a brief video demonstrating the functionality of your assignment. Upload it to YouTube (public or unlisted).
+Be sure to review the rubric below to see how you will be graded on this assignment.*/

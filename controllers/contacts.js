@@ -48,6 +48,7 @@ const getContactById = async (req, res) => {
 };
 /* CREATE CONTACT */
 const createContact = async (req, res) => {
+  console.log("req body", req.body);
   const contact = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -55,7 +56,7 @@ const createContact = async (req, res) => {
     favoriteColor: req.body.favoriteColor,
     birthday: req.body.birthday,
   };
-
+  console.log("Contact", contact);
   try {
     const db = getDb();
     const response = await db.collection("contacts").insertOne(contact);
@@ -83,8 +84,6 @@ const updateContact = async (req, res) => {
   try {
     const db = getDb();
     const response = await db
-      .getDb()
-      .db()
       .collection("contacts")
       .updateOne({ _id: contactId }, { $set: updatedContact });
     if (response.modifiedCount > 0) {

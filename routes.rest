@@ -1,5 +1,30 @@
 GET http://localhost:8080/professional # the request above returns a json object with all professional data for Nathan Birch. No database is connected.
 
+###
 GET http://localhost:8080/contacts  #the request above is connected to a mongoDB and returns all contacts
 
+###
 GET http://localhost:8080/contacts/66fce0a430be36e06fd966fb #the request above is connected to a mongoDB and returns contact info based off id
+
+
+### Create contact 
+POST http://localhost:8080/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Robin",
+  "lastName": "Hubbard",
+  "email": "rhubbard@test.com",
+  "favoriteColor": "White",
+  "birthday": "2022-04-23"
+}
+### PUT contact 
+PUT http://localhost:8080/contacts/66fce0a430be36e06fd966fb HTTP/1.1 
+Content-type: application/json
+
+{
+"firstName":"Harley", "lastName":"Harman", "email":"h.harman@test.com", "favoriteColor":"Green", "birthday":"01/01/2001"
+}
+
+### DELETE contact 
+DELETE http://localhost:8080/contacts/6701c82cd58687a7f9a2081f HTTP/1.1

@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoDB = require("./database/connect");
 const professionalRoutes = require("./routes/professional");
 const contactRoutes = require("./routes/contacts");
-
+const myRoutes = require("./routes/index");
 app.use(cors());
 
 // Middleware to parse JSON request body
@@ -16,6 +16,7 @@ mongoDB.connectDb();
 // Define route for data
 app.use("/professional", professionalRoutes);
 app.use("/contacts", contactRoutes);
+app.use("/", myRoutes);
 
 // Start server on port 8080
 const PORT = process.env.PORT || 8080;

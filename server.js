@@ -4,19 +4,21 @@ const cors = require("cors");
 const mongoDB = require("./database/connect");
 const professionalRoutes = require("./routes/professional");
 const contactRoutes = require("./routes/contacts");
-const myRoutes = require("./routes/index");
-app.use(cors());
+const myRoutes = require("./routes");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 // Middleware to parse JSON request body
-app.use(express.json());
+app
+  .use(express.json())
+  .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+  .use(cors())
+  .use("/professional", professionalRoutes)
+  .use("/contacts", contactRoutes)
+  .use("/", myRoutes);
 
 // Connect to MongoDB
 mongoDB.connectDb();
-
-// Define route for data
-app.use("/professional", professionalRoutes);
-app.use("/contacts", contactRoutes);
-app.use("/", myRoutes);
 
 // Start server on port 8080
 const PORT = process.env.PORT || 8080;

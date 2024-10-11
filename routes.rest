@@ -50,7 +50,6 @@ GET https://cse341-8zfd.onrender.com/contacts/66fce02b30be36e06fd8b554
 ### Production PUT Contact
 PUT https://cse341-8zfd.onrender.com/contacts/66fce0a430be36e06fd966fb HTTP/1.1 
 Content-type: application/json
-
 {
 "firstName":"Brigham", "lastName":"Harman", "email":"b.harman@test.com", "favoriteColor":"Green", "birthday":"01/01/2001"
 }

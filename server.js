@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
 const mongoDB = require("./database/connect");
 const professionalRoutes = require("./routes/professional");
 const contactRoutes = require("./routes/contacts");
@@ -12,7 +11,6 @@ const swaggerDocument = require("./swagger.json");
 app
   .use(express.json())
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-  .use(cors())
   .use("/professional", professionalRoutes)
   .use("/contacts", contactRoutes)
   .use("/", myRoutes);

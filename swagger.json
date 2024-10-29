@@ -10,6 +10,13 @@
   "schemes": ["http"],
   "paths": {
     "/": {
+      "/api-docs": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {}
+        }
+      },
       "get": {
         "description": "",
         "responses": {

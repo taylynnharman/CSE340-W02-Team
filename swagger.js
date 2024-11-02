@@ -5,8 +5,10 @@ const doc = {
     title: "My API",
     description: "Contact Management API",
   },
-  host: "localhost:8080",
-  schemes: ["http"],
+  // Use the host environment variable or default to localhost for development
+  host: process.env.HOST || "localhost:8080",
+  // Adjust scheme based on environment
+  schemes: process.env.NODE_ENV === "production" ? ["https"] : ["http"],
 };
 
 const outputFile = "./swagger.json";

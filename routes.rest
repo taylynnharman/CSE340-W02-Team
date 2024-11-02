@@ -46,13 +46,30 @@ GET https://cse341-8zfd.onrender.com/contacts
 GET https://cse341-8zfd.onrender.com/contacts/66fce02b30be36e06fd8b554 
 #the request above is connected to a mongoDB and returns contact info based off id
 
+### Production Create contact 
+POST https://cse341-8zfd.onrender.com/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Eleanor",
+  "lastName": "Smart",
+  "email": "eSmart@test.com",
+  "favoriteColor": "White",
+  "birthday": "2008-06-23"
+}
 
 ### Production PUT Contact
-PUT https://cse341-8zfd.onrender.com/contacts/66fce0a430be36e06fd966fb HTTP/1.1 
-Content-type: application/json
+PUT https://cse341-8zfd.onrender.com/contacts/6726ac11e9ebfd4c4e7b31c0
+Content-Type: application/json
+
 {
-"firstName":"Brigham", "lastName":"Harman", "email":"b.harman@test.com", "favoriteColor":"Green", "birthday":"01/01/2001"
+  "firstName": "Colleen",
+  "lastName": "Smart",
+  "email": "cSmart@test.com",
+  "favoriteColor": "White",
+  "birthday": "2008-06-23"
 }
+
 
 ### Production DELETE Contact
 DELETE https://cse341-8zfd.onrender.com/contacts/6701f2a2aec68dd06851091e HTTP/1.1

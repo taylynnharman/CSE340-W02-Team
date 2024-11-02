@@ -6,6 +6,7 @@ const contactRoutes = require("./routes/contacts");
 const myRoutes = require("./routes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
+const cors = require("cors");
 
 // Middleware to parse JSON request body
 app
@@ -13,7 +14,8 @@ app
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   .use("/professional", professionalRoutes)
   .use("/contacts", contactRoutes)
-  .use("/", myRoutes);
+  .use("/", myRoutes)
+  .use(cors());
 
 // Connect to MongoDB
 mongoDB.connectDb();

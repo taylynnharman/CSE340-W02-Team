@@ -6,17 +6,12 @@
     "version": "1.0.0"
   },
   "host": "localhost:8080",
-  "basePath": "/contacts",
-  "schemes": ["http"],
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/": {
-      "/api-docs": {
-        "get": {
-          "description": "",
-          "parameters": [],
-          "responses": {}
-        }
-      },
       "get": {
         "description": "",
         "responses": {
@@ -59,6 +54,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -132,6 +130,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"

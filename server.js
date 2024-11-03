@@ -6,20 +6,14 @@ const contactRoutes = require("./routes/contacts");
 const myRoutes = require("./routes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-const cors = require("cors");
 
-const corsOptions = {
-  origin: "https://cse341-8zfd.onrender.com",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-};
 // Middleware to parse JSON request body
 app
   .use(express.json())
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   .use("/professional", professionalRoutes)
   .use("/contacts", contactRoutes)
-  .use("/", myRoutes)
-  .use(cors(corsOptions));
+  .use("/", myRoutes);
 
 // Connect to MongoDB
 mongoDB.connectDb();

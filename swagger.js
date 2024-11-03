@@ -3,16 +3,10 @@ const swaggerAutogen = require("swagger-autogen")();
 const doc = {
   info: {
     title: "My API",
-    description: "Contact Management API",
+    description: "Contact API",
   },
-  // Use the host environment variable or default to localhost for development
-  host:
-    process.env.NODE_ENV === "production"
-      ? "cse341-8zfd.onrender.com"
-      : "localhost:8080",
-
-  // Adjust scheme based on environment
-  schemes: process.env.NODE_ENV === "production" ? ["https"] : ["http"],
+  host: "https://cse341-8zfd.onrender.com",
+  schemes: ["https"],
 };
 
 const outputFile = "./swagger.json";
